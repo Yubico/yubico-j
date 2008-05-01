@@ -1,0 +1,37 @@
+Introduction
+------------
+
+This package make up the low-level Java software development kit for
+the Yubico authentication device, the Yubikey.  In particular:
+
+  COPYING: software license
+
+  build.properties, build.xml: build files for 'ant'.
+
+  resources/: libraries needed by this package, see resources/README
+
+  src/: source code of Yubikey package.
+
+  test/: self-tests
+
+Building
+--------
+
+Build the package by invoking:
+
+  $ ant
+
+The output Java library will be stored in out/base.jar.
+
+Self-tests
+----------
+
+Run the self-tests to make sure it is working properly:
+
+  $ ant test
+
+
+Questions?
+----------
+
+Talk to <simon@yubico.com>.

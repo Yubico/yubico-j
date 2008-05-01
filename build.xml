@@ -1,0 +1,70 @@
+<project name="yubico" default="build" basedir=".">
+
+  <property file="./build.properties"/> 
+
+  <target name="all" depends="clean, build"/>
+
+  <target name="init">
+    <mkdir dir="${classes}"/>
+    <mkdir dir="${test_classes}"/>
+    <mkdir dir="${lib}"/>
+    <mkdir dir="${tmp}"/>
+    <mkdir dir="${out}"/>
+    <mkdir dir="${reports}"/>
+  </target>
+
+  <target name="clean">
+    <delete dir="${classes}"/>
+    <delete dir="${test_classes}"/>
+    <delete dir="${lib}"/>
+    <delete dir="${tmp}"/>
+    <delete dir="${out}"/>
+    <delete dir="${reports}"/>
+  </target>
+
+
+  <path id="compile.classpath">
+    <pathelement location="${log4j_jar}"/> 
+  </path>  
+
+  <path id="test.compile.classpath">
+    <pathelement location="${log4j_jar}"/> 
+    <pathelement location="${junit_jar}"/> 
+    <pathelement location="${classes}"/>
+  </path>  
+
+  <target name="build" depends="init">
+    <javac srcdir="${src}" destdir="${classes}" 
+       debug="on" includeAntRuntime="no" source="1.4">
+      <compilerarg value="-Xlint"/>
+      <classpath refid="compile.classpath"/>
+    </javac>
+    <copy todir="${classes}" file="${src}/log4j.properties"/>
+    <jar jarfile="${base_jar}">
+      <fileset dir="${classes}"/>
+    </jar>
+    <javac srcdir="${test}" destdir="${test_classes}" 
+       debug="on" includeAntRuntime="no" source="1.4">
+      <compilerarg value="-Xlint"/>
+      <classpath refid="test.compile.classpath"/>
+    </javac>
+    <copy todir="${test_classes}" file="${test_data}/log4j.properties"/>
+    <jar jarfile="${base_test_jar}">
+      <fileset dir="${test_classes}"/>
+    </jar>
+  </target>
+
+  <target name="test" depends="build">
+    <junit fork="yes" printsummary="on" dir="${test_data}" showoutput="on">
+      <classpath>
+        <pathelement location="${base_jar}"/>
+        <pathelement location="${base_test_jar}"/>
+        <pathelement location="${log4j_jar}"/>
+      </classpath>
+      <formatter type="plain"/>
+      <test name="com.yubico.base.test.ModhexTest" todir="${reports}"/> 
+      <test name="com.yubico.base.test.PofTest" todir="${reports}"/> 
+    </junit>
+  </target>
+
+</project>
