@@ -1,17 +1,19 @@
+#summary Introduction and installation of the Yubico Java library
+
 = Introduction =
 
 This package make up the low-level Java software development kit for
 the Yubico authentication device, the Yubikey.  In particular:
 
-* COPYING: software license
+  * COPYING: software license
 
-* build.properties, build.xml: build files for 'ant'.
+  * build.properties, build.xml: build files for 'ant'.
 
-* resources/: libraries needed by this package, see resources/README
+  * resources/: libraries needed by this package, see resources/README
 
-* src/: source code of Yubikey package.
+  * src/: source code of Yubikey package.
 
-* test/: self-tests
+  * test/: self-tests
 
 == Building ==
 
