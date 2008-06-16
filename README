@@ -25,6 +25,19 @@ Build the package by invoking:
 
 The output Java library will be stored in out/base.jar.
 
+== Test the code ==
+
+To decode a Yubikey OTP you need the AES key for the yubikey.  Contact
+Yubico to get it.  Then you can invoke the tool as follows:
+
+{{{
+  $ cd classes
+  $ java com.yubico.base.tools.Display <aeskey> <one_time_password>
+}}}
+
+Replace <aeskey> with the modhex encoded AES key and
+<one_time_password> with the Yubikey output.
+
 == Self-tests ==
 
 Run the self-tests to make sure it is working properly:
