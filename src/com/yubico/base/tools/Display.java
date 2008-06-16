@@ -1,8 +1,8 @@
+
 package com.yubico.base.tools;
 
-import org.apache.log4j.Logger;
 import java.security.GeneralSecurityException;
-import java.io.ByteArrayOutputStream;
+
 import com.yubico.base.Modhex;
 import com.yubico.base.Pof;
 import com.yubico.base.Token;
