@@ -1,9 +1,6 @@
 
 package com.yubico.base.test;
 
-import static com.yubico.base.test.UnitUtil.assertEqual;
-import static com.yubico.base.test.UnitUtil.assertStringInAlphabet;
-
 import java.util.Random;
 
 import com.yubico.base.Modhex;
@@ -38,9 +35,9 @@ public final class ModhexTest
     byte[] raw=new byte[1000];
     r.nextBytes(raw);
     String encoded=Modhex.encode(raw);
-    assertStringInAlphabet(encoded, Modhex.ALPHABET);
+    UnitUtil.assertStringInAlphabet(encoded, Modhex.ALPHABET);
     byte[] decoded=Modhex.decode(encoded);
-    assertEqual(raw, decoded);
+    UnitUtil.assertEqual(raw, decoded);
   }
   
   /**
@@ -56,10 +53,10 @@ public final class ModhexTest
     byte[] raw=new byte[1000];
     r.nextBytes(raw);
     String encoded=Modhex.encode(raw);
-    assertStringInAlphabet(encoded, Modhex.ALPHABET);
+    UnitUtil.assertStringInAlphabet(encoded, Modhex.ALPHABET);
     encoded=encoded.toUpperCase();
     byte[] decoded=Modhex.decode(encoded);
-    assertEqual(raw, decoded);
+    UnitUtil.assertEqual(raw, decoded);
   }
   
   /**
