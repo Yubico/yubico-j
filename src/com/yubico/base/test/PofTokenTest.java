@@ -1,8 +1,6 @@
 
 package com.yubico.base.test;
 
-import static com.yubico.base.test.UnitUtil.assertEqual;
-
 import java.security.GeneralSecurityException;
 
 import com.yubico.base.Pof;
@@ -66,13 +64,13 @@ public final class PofTokenTest
     {
       Token t=Pof.parse(m_testVector, m_aesKey);
       
-      assertEqual(t.getUid(), m_uid);
-      assertEqual(t.getSessionCounter(), m_counter);
-      assertEqual(t.getCrc(), m_crc);
-      assertEqual(t.getRandom(), m_random);
-      assertEqual(t.getTimestampLow(), m_tlow);
-      assertEqual(t.getTimestampHigh(), m_thigh);
-      assertEqual(t.getTimesUsed(), m_use);
+      UnitUtil.assertEqual(t.getUid(), m_uid);
+      UnitUtil.assertEqual(t.getSessionCounter(), m_counter);
+      UnitUtil.assertEqual(t.getCrc(), m_crc);
+      UnitUtil.assertEqual(t.getRandom(), m_random);
+      UnitUtil.assertEqual(t.getTimestampLow(), m_tlow);
+      UnitUtil.assertEqual(t.getTimestampHigh(), m_thigh);
+      UnitUtil.assertEqual(t.getTimesUsed(), m_use);
     }
     catch (GeneralSecurityException gsx){ throw new RuntimeException(gsx); }
   }
