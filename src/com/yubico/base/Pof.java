@@ -28,9 +28,6 @@ public class Pof
    * <p>
    *   Decrypt and parse YubiKey OTP.
    * </p>
-   * <p>
-   *   Note that this
-   * </p>
    * @param block {@link Modhex} encoded representation of the YubiKey OTP.
    * @param key   128 bit AES key used to encrypt {@code block}, now will be
    *              used to ecrypt.
