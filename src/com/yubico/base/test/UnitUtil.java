@@ -6,6 +6,16 @@ final class UnitUtil
 {
   private UnitUtil(){} // Utility pattern dictates private constructor.
   
+  // Asserts two byte values equal.
+  static void assertEqual(byte b0, byte b1)
+  {
+    if (b0!=b1)
+    {
+      throw new RuntimeException("b0!=b1 : "+Byte.toString(b0)+"!="+
+        Byte.toString(b1));
+    }
+  }
+  
   // Asserts two arrays equal in length and count, null values not allowed.
   static void assertEqual(byte[] a1, byte[] a2)
   {
