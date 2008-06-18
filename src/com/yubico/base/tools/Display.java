@@ -25,8 +25,7 @@ public class Display
    * </p>
    * <p>
    *   First argument is the 128 bit (16 bytes) 
-       {@link Modhex} encoded (32 characters) encoded AES 
-   *   key to use for encryption. 
+   *   {@link Modhex} encoded (32 characters) AES key to use for encryption. 
    *   
    *   Second argument is the 
    *   {@code Modhex} encoded OTP (i.e. as produced by the YubiKey).
