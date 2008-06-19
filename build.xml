@@ -24,7 +24,6 @@
 
 
   <path id="compile.classpath">
-    <pathelement location="${log4j_jar}"/> 
   </path>  
 
   <path id="test.compile.classpath">
@@ -39,7 +38,6 @@
       <compilerarg value="-Xlint"/>
       <classpath refid="compile.classpath"/>
     </javac>
-    <copy todir="${classes}" file="${src}/log4j.properties"/>
     <jar jarfile="${base_jar}">
       <fileset dir="${classes}"/>
     </jar>
