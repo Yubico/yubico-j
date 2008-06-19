@@ -10,7 +10,8 @@ package com.yubico.base.tools;
  *   {@code String}.
  * </p>
  * <p>
- *   For internal yubico-j use only, client code of yubico-j must use.
+ *   For internal yubico-j use only, client code of yubico-j must <i>not</i>
+ *   use.
  * </p>
  * @author Arne
  */
