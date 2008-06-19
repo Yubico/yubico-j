@@ -5,6 +5,7 @@ import java.security.GeneralSecurityException;
 
 import com.yubico.base.Pof;
 import com.yubico.base.Token;
+import com.yubico.base.tools.Hex;
 
 /**
  * <p>
