@@ -3,7 +3,6 @@ package com.yubico.base.test;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import org.apache.log4j.Logger;
 
 import com.yubico.base.Pof;
 
@@ -18,8 +17,6 @@ public class PofTest extends TestCase
 
     public static Test suite() throws Exception
     {
-        org.apache.log4j.PropertyConfigurator.configure("log4j.properties");
-
         return new TestSuite(PofTest.class);
     }
 

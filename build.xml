@@ -27,7 +27,6 @@
   </path>  
 
   <path id="test.compile.classpath">
-    <pathelement location="${log4j_jar}"/> 
     <pathelement location="${junit_jar}"/> 
     <pathelement location="${classes}"/>
   </path>  
@@ -46,7 +45,6 @@
       <compilerarg value="-Xlint"/>
       <classpath refid="test.compile.classpath"/>
     </javac>
-    <copy todir="${test_classes}" file="${test_data}/log4j.properties"/>
     <jar jarfile="${base_test_jar}">
       <fileset dir="${test_classes}"/>
     </jar>
@@ -57,7 +55,6 @@
       <classpath>
         <pathelement location="${base_jar}"/>
         <pathelement location="${base_test_jar}"/>
-        <pathelement location="${log4j_jar}"/>
       </classpath>
       <formatter type="plain"/>
       <test name="com.yubico.base.test.ModhexTest" todir="${reports}"/> 
