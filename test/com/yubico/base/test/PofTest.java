@@ -8,8 +8,6 @@ import com.yubico.base.Pof;
 
 public class PofTest extends TestCase
 {
-    private Logger log = Logger.getLogger(PofTest.class);
-
     public static void main(String[] args) throws Exception
     {
         junit.textui.TestRunner.run(suite());

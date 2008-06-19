@@ -8,8 +8,6 @@ import com.yubico.base.Modhex;
 
 public class ModhexTest extends TestCase
 {
-    private Logger log = Logger.getLogger(ModhexTest.class);
-
     public static void main(String[] args) throws Exception
     {
         junit.textui.TestRunner.run(suite());
