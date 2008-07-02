@@ -182,8 +182,8 @@ public class Token
   public byte[] getCleanCounter()
   {
   	byte[] b = new byte[2];
-	  b[0] = (byte) (sessionCounter[0] & (byte) 0x7F);
-	  b[1] = (byte) (sessionCounter[1] & (byte) 0xFF);
+	  b[0] = (byte) (sessionCounter[0] & (byte) 0xFF);
+	  b[1] = (byte) (sessionCounter[1] & (byte) 0x7F);
 	  return b;
   }
   
@@ -204,7 +204,7 @@ public class Token
    */
   public boolean wasCapsLockOn()
   {
-	  return ((byte) (sessionCounter[0] & (byte) 0x80)) != 0;
+	  return ((byte) (sessionCounter[1] & (byte) 0x80)) != 0;
   }
 
   // Overrides.
