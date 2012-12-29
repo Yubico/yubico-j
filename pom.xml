@@ -48,6 +48,13 @@
     </distributionManagement>
 
     <build>
+      <resources>
+        <resource>
+          <directory>src/</directory>
+          <excludes><exclude>**/package.html</exclude></excludes>
+        </resource>
+      </resources>
+
       <sourceDirectory>src</sourceDirectory>
       <testSourceDirectory>test</testSourceDirectory>
         <plugins>
