@@ -1,13 +1,13 @@
-/* Copyright (c) 2008, Yubico AB.  All rights reserved.
+/* Copyright (c) 2008-2012, Yubico AB.  All rights reserved.
 
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions
    are met:
 
-   * Redistributions of source code must retain the above copyright
+ * Redistributions of source code must retain the above copyright
      notice, this list of conditions and the following disclaimer.
 
-   * Redistributions in binary form must reproduce the above copyright
+ * Redistributions in binary form must reproduce the above copyright
      notice, this list of conditions and the following
      disclaimer in the documentation and/or other materials provided
      with the distribution.
@@ -25,33 +25,24 @@
    TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
    THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
    SUCH DAMAGE.
-*/
+ */
 
 package com.yubico.base.test;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 
 import com.yubico.base.Modhex;
 
-public class ModhexTest extends TestCase
+public class ModhexTest
 {
-    public static void main(String[] args) throws Exception
-    {
-        junit.textui.TestRunner.run(suite());
-    }
-
-    public static Test suite() throws Exception
-    {
-        return new TestSuite(ModhexTest.class);
-    }
-
-    public void testScenario1() throws Exception
-    {
-	String s = Modhex.encode("test".getBytes());
-	assertEquals(s, "ifhgieif");
-	byte[] b = Modhex.decode(s);
-	assertEquals(new String(b), "test");
-    }
+	@Test
+	public void testScenario1() throws Exception
+	{
+		String s = Modhex.encode("test".getBytes());
+		assertEquals(s, "ifhgieif");
+		byte[] b = Modhex.decode(s);
+		assertEquals(new String(b), "test");
+	}
 }
