@@ -1,4 +1,4 @@
-/* Copyright (c) 2008, Yubico AB.  All rights reserved.
+/* Copyright (c) 2008-2012, Yubico AB.  All rights reserved.
 
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions
@@ -40,7 +40,6 @@ public class Token
   static int BLOCK_SIZE = 16;
   static int KEY_SIZE = 16;
   static int UID_SIZE = 6;
-  static long CRC_OK_RESIDUE = 0xf0b8;
 
   /* Unique (secret) ID. */
   byte[] uid;  //UID_SIZE
@@ -64,24 +63,6 @@ public class Token
   /* CRC16 value of all fields. */
   byte[] crc; //2
 
-  private static int calculateCrc(byte[] b)
-  {
-	  //System.out.println("in calc crc, b[] = "+toString(b));
-	  int crc = 0xffff;
-
-	  for (int i = 0; i < b.length; i += 1) {
-	    crc ^= b[i] & 0xFF;
-	    for (int j = 0; j < 8; j++){
-		    int n = crc & 1;
-		    crc >>= 1;
-		    if (n != 0) {
-		      crc ^= 0x8408;
-		    }
-	    }
-	  }
-	  return crc;
-  }
-  
   /**
    * <p>
    *   Gets <i>reference</i> to the CRC16 checksum of the OTP.
@@ -151,10 +132,10 @@ public class Token
 	    throw new IllegalArgumentException("Not "+BLOCK_SIZE+" length");
 	  }
 
-	  int calcCrc = Token.calculateCrc(b);
+	  int calcCrc = CRC13239.getCRC(b);
 	  //System.out.println("calc crc  = "+calcCrc);
 	  //System.out.println("ok crc is = "+Token.CRC_OK_RESIDUE);
-	  if (calcCrc != Token.CRC_OK_RESIDUE) {
+	  if (calcCrc != CRC13239.CRC_OK_RESIDUAL) {
 	    throw new IllegalArgumentException("CRC failure");
 	  }
 	  
