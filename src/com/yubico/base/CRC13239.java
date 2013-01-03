@@ -48,6 +48,7 @@ public class CRC13239
 	/**
 	 * <p>Method for calculating a CRC13239 checksum over a byte buffer.</p>
 	 * @param buf byte buffer to be checksummed.
+	 * @param len how much of the buffer should be checksummed
 	 * @return CRC13239 checksum
 	 */
 	static public short getCRC(byte[] buf, int len)
