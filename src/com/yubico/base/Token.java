@@ -132,7 +132,7 @@ public class Token
 	    throw new IllegalArgumentException("Not "+BLOCK_SIZE+" length");
 	  }
 
-	  int calcCrc = CRC13239.getCRC(b);
+	  int calcCrc = CRC13239.getCRC(b, b.length);
 	  //System.out.println("calc crc  = "+calcCrc);
 	  //System.out.println("ok crc is = "+Token.CRC_OK_RESIDUE);
 	  if (calcCrc != CRC13239.CRC_OK_RESIDUAL) {

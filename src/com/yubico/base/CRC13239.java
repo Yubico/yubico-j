@@ -50,14 +50,14 @@ public class CRC13239
 	 * @param buf byte buffer to be checksummed.
 	 * @return CRC13239 checksum
 	 */
-	static public short getCRC(byte[] buf)
+	static public short getCRC(byte[] buf, int len)
 	{
 		short i;
 		short crc = 0x7fff;
 		boolean isNeg = true;
 
-		for(byte b : buf) {
-			crc ^= b & 0xff;
+		for(int j = 0; j < len; j++) {
+			crc ^= buf[j] & 0xff;
 
 			for (i = 0; i < 8; i++) {
 				if ((crc & 1) == 0) {

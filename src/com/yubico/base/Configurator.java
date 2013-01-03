@@ -254,7 +254,7 @@ public class Configurator {
 		cfg[CFG_TKT_FLAGS_OFFS] = tktFlags;
 		cfg[CFG_CFG_FLAGS_OFFS] = cfgFlags;
 		
-		short crc = (short) ~CRC13239.getCRC(cfg);
+		short crc = (short) ~CRC13239.getCRC(cfg, CFG_SIZE - 2);
 		cfg[CFG_CRC_OFFS] = (byte) crc;
 		cfg[CFG_CRC_OFFS + 1] = (byte) (crc >> 8);
 

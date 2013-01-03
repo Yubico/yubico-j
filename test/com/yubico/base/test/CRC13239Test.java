@@ -41,7 +41,7 @@ public class CRC13239Test {
 	public void testCrc() {
 
 		byte[] data = {0x0, 0x1, 0x2, 0x3, 0x4};
-		short crc = CRC13239.getCRC(data);
+		short crc = CRC13239.getCRC(data, data.length);
 		assertEquals((short)62919, crc);
 	}
 
@@ -53,7 +53,7 @@ public class CRC13239Test {
 		 * 4470
 		 * >>>
 		 */
-		short crc = CRC13239.getCRC(data);
+		short crc = CRC13239.getCRC(data, data.length);
 		assertEquals((short)4470, crc);
 	}
 	
@@ -66,7 +66,7 @@ public class CRC13239Test {
 				(byte) 0xfa, /* session_ctr */
 				0x60, (byte) 0xea /* rnd */
 		};
-		short crc = CRC13239.getCRC(data);
+		short crc = CRC13239.getCRC(data, data.length);
 
 		assertEquals((short)35339, crc);
 	}
@@ -74,7 +74,7 @@ public class CRC13239Test {
 	@Test
 	public void testCrc4() {
 		byte[] data = {0x55, (byte) 0xaa, 0x00, (byte) 0xff};
-		short crc = CRC13239.getCRC(data);
+		short crc = CRC13239.getCRC(data, data.length);
 		assertEquals((short)52149, crc);
 	}
 }
