@@ -27,8 +27,10 @@ The output Java library will be stored in out/base.jar.
 
 == Test the code ==
 
-To decode a Yubikey OTP you need the AES key for the yubikey.  Contact
-Yubico to get it.  Then you can invoke the tool as follows:
+To decode a Yubikey OTP you need the AES key for the YubiKey.  The
+typical way to know the AES key is if you programmed it yourself,
+using the YubiKey personalization tools.  Then you can invoke the tool
+as follows:
 
 {{{
   $ cd classes
