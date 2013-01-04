@@ -9,7 +9,7 @@
         <name>Yubico AB</name>
         <url>http://www.yubico.com/</url>
     </organization>
-    <url>https://github.com/Yubico/yubico-j</url>
+    <url>http://yubico.github.com/yubico-j</url>
     <packaging>jar</packaging>
 
     <developers>
@@ -43,8 +43,7 @@
       <url>scm:git:git://github.com/Yubico/yubico-j.git</url>
       <connection>scm:git:git://github.com/Yubico/yubico-j.git</connection>
       <developerConnection>scm:git:ssh://git@github.com/Yubico/yubico-j.git</developerConnection>
-      <tag>HEAD</tag>
-  </scm>
+    </scm>
 
     <dependencies>
       <dependency>
