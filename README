@@ -1,6 +1,5 @@
-#summary Introduction and installation of the Yubico Java library
-
-= Introduction =
+Introduction
+------------
 
 This package make up the low-level Java software development kit for
 the Yubico authentication device, the Yubikey.  In particular:
@@ -13,25 +12,24 @@ the Yubico authentication device, the Yubikey.  In particular:
 
   * test/: self-tests
 
-== Building ==
+Building
+--------
 
 Build the package by invoking:
 
-{{{
   $ mvn package
-}}}
 
 The output Java library will be stored in target/yubico-j-$version.jar
 
-== Self-tests ==
+Self-tests
+----------
 
 Run the self-tests to make sure it is working properly:
 
-{{{
   $ mvn test
-}}}
 
-== Questions? ==
+Questions?
+----------
 
 See the Google Group yubico-devel:
 http://groups.google.com/group/yubico-devel
