@@ -7,9 +7,7 @@ the Yubico authentication device, the Yubikey.  In particular:
 
   * COPYING: software license
 
-  * build.properties, build.xml: build files for 'ant'.
-
-  * resources/: libraries needed by this package, see resources/README
+  * pom.xml: build files for 'mvn'.
 
   * src/: source code of Yubikey package.
 
@@ -20,32 +18,17 @@ the Yubico authentication device, the Yubikey.  In particular:
 Build the package by invoking:
 
 {{{
-  $ ant
+  $ mvn package
 }}}
 
-The output Java library will be stored in out/base.jar.
-
-== Test the code ==
-
-To decode a Yubikey OTP you need the AES key for the YubiKey.  The
-typical way to know the AES key is if you programmed it yourself,
-using the YubiKey personalization tools.  Then you can invoke the tool
-as follows:
-
-{{{
-  $ cd classes
-  $ java com.yubico.base.tools.Display <aeskey> <one_time_password>
-}}}
-
-Replace <aeskey> with the modhex encoded AES key and
-<one_time_password> with the Yubikey output.
+The output Java library will be stored in target/yubico-j-$version.jar
 
 == Self-tests ==
 
 Run the self-tests to make sure it is working properly:
 
 {{{
-  $ ant test
+  $ mvn test
 }}}
 
 == Questions? ==
