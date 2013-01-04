@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.yubico</groupId>
     <artifactId>yubico-j</artifactId>
-    <version>1.3-SNAPSHOT</version>
+    <version>1.3</version>
     <name>yubico-j</name>
     <description>Low-level library for decrypting and parsing Yubikey One-Time Passwords (OTP).</description>
     <organization>
@@ -16,7 +16,7 @@
       <developer>
         <id>simon</id>
         <name>Simon Josefsson</name>
-        <email>simon@yubico.com></email>
+        <email>simon@yubico.com&gt;</email>
       </developer>
       <developer>
         <id>klas</id>
@@ -43,7 +43,8 @@
       <url>scm:git:git://github.com/Yubico/yubico-j.git</url>
       <connection>scm:git:git://github.com/Yubico/yubico-j.git</connection>
       <developerConnection>scm:git:ssh://git@github.com/Yubico/yubico-j.git</developerConnection>
-    </scm>
+      <tag>yubico-j-1.3</tag>
+  </scm>
 
     <dependencies>
       <dependency>
