@@ -12,6 +12,26 @@
     <url>https://github.com/Yubico/yubico-j</url>
     <packaging>jar</packaging>
 
+    <developers>
+      <developer>
+        <id>simon</id>
+        <name>Simon Josefsson</name>
+        <email>simon@yubico.com></email>
+      </developer>
+      <developer>
+        <id>klas</id>
+        <name>Klas Lindfors</name>
+        <email>klas@yubico.com</email>
+      </developer>
+    </developers>
+
+    <contributors>
+      <contributor>
+        <name>Arne Halvorsen</name>
+        <email>arne.halvorsen@gmail.com</email>
+      </contributor>
+    </contributors>
+
     <licenses>
       <license>
         <name>BSD-license</name>
