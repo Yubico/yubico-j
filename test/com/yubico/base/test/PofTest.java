@@ -30,10 +30,14 @@
 package com.yubico.base.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
+
+import java.security.GeneralSecurityException;
 
 import org.junit.Test;
 
 import com.yubico.base.Pof;
+import com.yubico.base.Token;
 
 public class PofTest
 {
@@ -51,5 +55,16 @@ public class PofTest
 		for (int i=0; i<b.length; i++){
 			assertEquals(b[i], facit[i]);
 		}
+	}
+	
+	@Test
+	public void testWithToken() throws GeneralSecurityException {
+		String buf = "nclefeinnuedtuueebcvnlkhhnbtehit";
+		byte key[] = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08,
+				0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f};
+		byte uid[] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06};
+		
+		Token token = Pof.parse(buf, key);
+		assertArrayEquals(uid, token.getUid());
 	}
 }
