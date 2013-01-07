@@ -1,0 +1,11 @@
+yubico-j NEWS -- History of user-visible changes.     -*- outline -*-
+
+* Version 1.4 (unreleased)
+
+** Add travis integration.
+
+** Self-tests.
+
+* Version 1.3 (released 2012-01-04)
+
+** Initial release on github.
