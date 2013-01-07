@@ -45,4 +45,9 @@ public class ModhexTest
 		byte[] b = Modhex.decode(s);
 		assertEquals(new String(b), "test");
 	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testIllegalDecode() {
+		Modhex.decode("illegal string");
+	}
 }
