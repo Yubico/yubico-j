@@ -2,22 +2,26 @@
 
 set -e
 
-STAGING_DIR=`mktemp -d '/tmp/yubico-j-doc.XXXXXX'`
-asciidoc -s -o $STAGING_DIR/README.html README
+if [ "x$YUBICO_GITHUB_REPO" = "x" ]; then
+  echo "please set YUBICO_GITHUB_REPO to the checked out location of the webpage repo"
+  exit 1
+elif [ ! -d $YUBICO_GITHUB_REPO/yubico-j ]; then
+  echo "$YUBICO_GITHUB_REPO/yubico-j does not exist."
+  exit 1
+fi
+
+asciidoc -s -o README.html README
+cat $YUBICO_GITHUB_REPO/yubico-j/index.html.in README.html > $YUBICO_GITHUB_REPO/yubico-j/index.html
+echo "</div></body></html>" >> $YUBICO_GITHUB_REPO/yubico-j/index.html
+rm -f README.html
 
 mvn javadoc:javadoc
-cp -r target/site/apidocs $STAGING_DIR/apidocs
+rsync -a target/site/apidocs/ $YUBICO_GITHUB_REPO/yubico-j/apidocs/
 
-git checkout gh-pages
-cat index.html.in $STAGING_DIR/README.html > index.html
-echo "</div></body></html>" >> index.html
-
-rm -rf apidocs
-cp -r $STAGING_DIR/apidocs apidocs
-rm -rf $STAGING_DIR
-
+cd $YUBICO_GITHUB_REPO/yubico-j
 git add index.html
-git commit -m "updated page with new README"
 git add apidocs
-git commit -m "updated javadocs"
-git checkout master
+git commit -m "updated javadocs and index.html"
+
+echo "Webpage updated but not pushed."
+exit 0
