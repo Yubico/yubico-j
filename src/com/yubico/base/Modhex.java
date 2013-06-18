@@ -4,10 +4,10 @@
    modification, are permitted provided that the following conditions
    are met:
 
-   * Redistributions of source code must retain the above copyright
+ * Redistributions of source code must retain the above copyright
      notice, this list of conditions and the following disclaimer.
 
-   * Redistributions in binary form must reproduce the above copyright
+ * Redistributions in binary form must reproduce the above copyright
      notice, this list of conditions and the following
      disclaimer in the documentation and/or other materials provided
      with the distribution.
@@ -25,7 +25,7 @@
    TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
    THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
    SUCH DAMAGE.
-*/
+ */
 
 package com.yubico.base;
 
@@ -33,85 +33,86 @@ import java.io.ByteArrayOutputStream;
 
 /**
  * <p>
- *   Utility methods to 
- *   {@link #encode(byte[]) encode} a byte array to Modhex 
- *   {@code String} and to
- *   {@link #decode(String) decode} a Modhex
- *   {@link String} to a the byte array it represents.   
+ * Utility methods to {@link #encode(byte[]) encode} a byte array to Modhex
+ * {@code String} and to {@link #decode(String) decode} a Modhex {@link String}
+ * to a the byte array it represents.
  * </p>
  * <p>
- *   Modehex encoding uses the 
- *   {@link #ALPHABET alphabet} {@code cbdefghijklnrtuv} which has the property
- *   of being at the same position on all keyboards.
+ * Modehex encoding uses the {@link #ALPHABET alphabet} {@code cbdefghijklnrtuv}
+ * which has the property of being at the same position on all keyboards.
  * </p>
+ * 
  * @author Simon
  */
-public class Modhex
-{
-  private Modhex(){} // Utility pattern dictates private constructor.
-  
-  /**
-  * <p>
-  *   The Modhex alphabet: the letters used to decode bytes in.
-  * </p>
-  */
-  public final static String ALPHABET = "cbdefghijklnrtuv";
-    
-  private static char trans[] = ALPHABET.toCharArray();
+public class Modhex {
+	private Modhex() {
+	} // Utility pattern dictates private constructor.
 
-  /**
-   * <p>
-   *   Encodes.
-   * </p>
-   * @param data Data to encode.
-   * @return Modhex.
-   */
-  public static String encode(byte[] data)
-  {
-	  StringBuffer result = new StringBuffer();
+	/**
+	 * <p>
+	 * The Modhex alphabet: the letters used to decode bytes in.
+	 * </p>
+	 */
+	public final static String ALPHABET = "cbdefghijklnrtuv";
 
-    for (int i = 0; i < data.length; i++) {
-	    result.append(trans[(data[i] >> 4) & 0xf]);
-	    result.append(trans[data[i] & 0xf]);
-	  }
+	private static char trans[] = ALPHABET.toCharArray();
 
-    return result.toString();
-  }
+	/**
+	 * <p>
+	 * Encodes.
+	 * </p>
+	 * 
+	 * @param data
+	 *            Data to encode.
+	 * @return Modhex.
+	 */
+	public static String encode(byte[] data) {
+		StringBuffer result = new StringBuffer();
 
-  /**
-   * <p>
-   *   Decodes.
-   * </p>
-   * @param s Modhex encoded
-   *          {@link String}. Decoding ignores case of {@code s}.
-   * @return Bytes {@code s} represents.
-   * @throws IllegalArgumentException If {@code s} not valid Modhex.
-   */
-  public static byte[] decode(String s)
-  {
-	  ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    int len = s.length();
- 	  
-	  boolean toggle = false;
-	  int keep = 0;
+		for (int i = 0; i < data.length; i++) {
+			result.append(trans[(data[i] >> 4) & 0xf]);
+			result.append(trans[data[i] & 0xf]);
+		}
 
-    for (int i = 0; i < len; i++) {
-      char ch = s.charAt(i);
- 	    int n = ALPHABET.indexOf(Character.toLowerCase(ch));
-	    if (n == -1) {
-		    throw new 
-		      IllegalArgumentException(s+" is not properly encoded");
-	    }
+		return result.toString();
+	}
 
- 	    toggle = !toggle;
+	/**
+	 * <p>
+	 * Decodes.
+	 * </p>
+	 * 
+	 * @param s
+	 *            Modhex encoded {@link String}. Decoding ignores case of
+	 *            {@code s}.
+	 * @return Bytes {@code s} represents.
+	 * @throws IllegalArgumentException
+	 *             If {@code s} not valid Modhex.
+	 */
+	public static byte[] decode(String s) {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		int len = s.length();
 
- 	    if (toggle) {
-		    keep = n;
-	    } else {
-		    baos.write((keep << 4) | n);
- 	    }
- 	  }
-	  return baos.toByteArray();
-  }
-  
+		boolean toggle = false;
+		int keep = 0;
+
+		for (int i = 0; i < len; i++) {
+			char ch = s.charAt(i);
+			int n = ALPHABET.indexOf(Character.toLowerCase(ch));
+			if (n == -1) {
+				throw new IllegalArgumentException(s
+						+ " is not properly encoded");
+			}
+
+			toggle = !toggle;
+
+			if (toggle) {
+				keep = n;
+			} else {
+				baos.write((keep << 4) | n);
+			}
+		}
+		return baos.toByteArray();
+	}
+
 }

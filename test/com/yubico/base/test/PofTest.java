@@ -29,8 +29,8 @@
 
 package com.yubico.base.test;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 import java.security.GeneralSecurityException;
 
@@ -39,31 +39,28 @@ import org.junit.Test;
 import com.yubico.base.Pof;
 import com.yubico.base.Token;
 
-public class PofTest
-{
+public class PofTest {
 	@Test
-	public void test1() throws Exception
-	{
+	public void test1() throws Exception {
 		String buf = "0123456789abcdef";
 		String key = "abcdef0123456789";
-		byte[] facit =  new byte[]{
-				(byte) 0x83, (byte) 0x8a, 0x46, 0x7f, 0x34, 0x63, 
-				(byte) 0x95, 0x51, (byte) 0x75, 0x5b, (byte) 0xd3, 
-				0x2a, 0x4a, 0x2f, 0x15, (byte) 0xe1};
+		byte[] facit = new byte[] { (byte) 0x83, (byte) 0x8a, 0x46, 0x7f, 0x34,
+				0x63, (byte) 0x95, 0x51, (byte) 0x75, 0x5b, (byte) 0xd3, 0x2a,
+				0x4a, 0x2f, 0x15, (byte) 0xe1 };
 
 		byte[] b = Pof.decrypt(key.getBytes(), buf.getBytes());
-		for (int i=0; i<b.length; i++){
+		for (int i = 0; i < b.length; i++) {
 			assertEquals(b[i], facit[i]);
 		}
 	}
-	
+
 	@Test
 	public void testWithToken() throws GeneralSecurityException {
 		String buf = "nclefeinnuedtuueebcvnlkhhnbtehit";
-		byte key[] = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08,
-				0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f};
-		byte uid[] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06};
-		
+		byte key[] = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08,
+				0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f };
+		byte uid[] = { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06 };
+
 		Token token = Pof.parse(buf, key);
 		assertArrayEquals(uid, token.getUid());
 	}

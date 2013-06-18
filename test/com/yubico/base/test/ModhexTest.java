@@ -35,18 +35,16 @@ import org.junit.Test;
 
 import com.yubico.base.Modhex;
 
-public class ModhexTest
-{
+public class ModhexTest {
 	@Test
-	public void testScenario1() throws Exception
-	{
+	public void testScenario1() throws Exception {
 		String s = Modhex.encode("test".getBytes());
 		assertEquals(s, "ifhgieif");
 		byte[] b = Modhex.decode(s);
 		assertEquals(new String(b), "test");
 	}
-	
-	@Test(expected=IllegalArgumentException.class)
+
+	@Test(expected = IllegalArgumentException.class)
 	public void testIllegalDecode() {
 		Modhex.decode("illegal string");
 	}
