@@ -5,3 +5,4 @@ License: BSD-2-Clause
 Name: Yubico Java low-level Library
 Project: yubico-j
 Summary: Java low-level library for Yubico YubiKey One-Time Passwords (OTPs)
+Yubico-Category: YubiKey Low-level Library
