@@ -136,7 +136,9 @@ public class Configurator {
 	 * @param fixed the fixed to set
 	 */
 	public void setFixed(byte[] fixed) {
-		System.arraycopy(fixed, 0, this.fixed, 0, fixed.length);
+		int length = fixed.length > 16 ? 16 : fixed.length;
+		this.fixed = new byte[length];
+		System.arraycopy(fixed, 0, this.fixed, 0, length);
 	}
 
 	/**
