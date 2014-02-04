@@ -1,4 +1,5 @@
-/* Copyright (c) 2008-2012, Yubico AB.  All rights reserved.
+/* Copyright (c) 2012, Yubico AB.  All rights reserved.
+   Copyright (c) 2013, Victor Boivie <victor@boivie.com>
 
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions
@@ -26,26 +27,18 @@
    THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
    SUCH DAMAGE.
  */
+package com.yubico.token;
 
-package com.yubico.base.test;
+/**
+ * <p>
+ * Indicates an invalid YubiKey token, as decided when parsing.
+ * </p>
+ */
+public class InvalidYubiTokenException extends Exception {
 
-import static org.junit.Assert.assertEquals;
+	private static final long serialVersionUID = 1L;
 
-import org.junit.Test;
-
-import com.yubico.base.Modhex;
-
-public class ModhexTest {
-	@Test
-	public void testScenario1() throws Exception {
-		String s = Modhex.encode("test".getBytes());
-		assertEquals(s, "ifhgieif");
-		byte[] b = Modhex.decode(s);
-		assertEquals(new String(b), "test");
-	}
-
-	@Test(expected = IllegalArgumentException.class)
-	public void testIllegalDecode() {
-		Modhex.decode("illegal string");
+	public InvalidYubiTokenException(String what) {
+		super(what);
 	}
 }

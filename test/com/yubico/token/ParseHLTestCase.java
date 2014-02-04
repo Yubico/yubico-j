@@ -27,25 +27,44 @@
    SUCH DAMAGE.
  */
 
-package com.yubico.base.test;
+package com.yubico.token;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
-import com.yubico.base.Modhex;
+import com.yubico.base.Base16;
 
-public class ModhexTest {
+public class ParseHLTestCase {
+
 	@Test
-	public void testScenario1() throws Exception {
-		String s = Modhex.encode("test".getBytes());
-		assertEquals(s, "ifhgieif");
-		byte[] b = Modhex.decode(s);
-		assertEquals(new String(b), "test");
+	public void testNormalToken() throws InvalidYubiTokenException {
+		String buf = "cbdefghijklnbvhgbhebfuurheknkvulgtdejrljhifn";
+		byte[] key = Base16.decode("0123456789abcdef0123456789abcdef");
+
+		YubiToken t = YubiTokenFactory.parse(buf, key);
+
+		assertThat(t.getPublicId(), is("cbdefghijkln"));
+		assertThat(t.getPrivateId(), is("ab1234512345"));
+		assertThat(t.getSessionCounter(), is(244));
+		assertThat(t.getCounter(), is(41345));
+		assertThat(t.getTimestamp(), is(12123456));
+		assertThat(t.getRandomNumber(), is(32999));
 	}
 
-	@Test(expected = IllegalArgumentException.class)
-	public void testIllegalDecode() {
-		Modhex.decode("illegal string");
+	@Test
+	public void testShortPublicId() throws InvalidYubiTokenException {
+		String buf = "cbdbvhgbhebfuurheknkvulgtdejrljhifn";
+		byte[] key = Base16.decode("0123456789abcdef0123456789abcdef");
+
+		YubiToken t = YubiTokenFactory.parse(buf, key);
+
+		assertThat(t.getPublicId(), is("cbd"));
+		assertThat(t.getPrivateId(), is("ab1234512345"));
+		assertThat(t.getSessionCounter(), is(244));
+		assertThat(t.getCounter(), is(41345));
+		assertThat(t.getTimestamp(), is(12123456));
+		assertThat(t.getRandomNumber(), is(32999));
 	}
 }

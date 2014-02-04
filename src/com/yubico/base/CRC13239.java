@@ -31,33 +31,39 @@ package com.yubico.base;
 
 /**
  * <p>
- *   Utility methods for calculating and verifying the CRC13239 checksum used
- *   for YubiKeys.
+ * Utility methods for calculating and verifying the CRC13239 checksum used for
+ * YubiKeys.
  * </p>
  */
-public class CRC13239
-{
+public class CRC13239 {
 	/**
-	 * <p>When verifying a checksum the CRC_OK_RESIDUAL should be the remainder</p>
+	 * <p>
+	 * When verifying a checksum the CRC_OK_RESIDUAL should be the remainder
+	 * </p>
 	 */
 	public static final short CRC_OK_RESIDUAL = (short) 0xf0b8;
-	
+
 	// only static functions, so private constructor
-	private CRC13239() { }
+	private CRC13239() {
+	}
 
 	/**
-	 * <p>Method for calculating a CRC13239 checksum over a byte buffer.</p>
-	 * @param buf byte buffer to be checksummed.
-	 * @param len how much of the buffer should be checksummed
+	 * <p>
+	 * Method for calculating a CRC13239 checksum over a byte buffer.
+	 * </p>
+	 * 
+	 * @param buf
+	 *            byte buffer to be checksummed.
+	 * @param len
+	 *            how much of the buffer should be checksummed
 	 * @return CRC13239 checksum
 	 */
-	static public short getCRC(byte[] buf, int len)
-	{
+	static public short getCRC(byte[] buf, int len) {
 		short i;
 		short crc = 0x7fff;
 		boolean isNeg = true;
 
-		for(int j = 0; j < len; j++) {
+		for (int j = 0; j < len; j++) {
 			crc ^= buf[j] & 0xff;
 
 			for (i = 0; i < 8; i++) {

@@ -1,4 +1,5 @@
 /* Copyright (c) 2012, Yubico AB.  All rights reserved.
+   Copyright (c) 2013, Victor Boivie <victor@boivie.com>
 
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions
@@ -26,53 +27,50 @@
    THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
    SUCH DAMAGE.
  */
+package com.yubico.base;
 
-package com.yubico.base.test;
+/**
+ * <p>
+ * Utility methods to {@link #encode(byte[]) encode} a byte array to hex
+ * {@code String} and to {@link #decode(String) decode} a hex {@link String} to
+ * a the byte array it represents.
+ * </p>
+ */
+public class Base16 {
+	private static final char[] HEX_CHARS = "0123456789abcdef".toCharArray();
+	private static final byte[] INV_HEX_CHARS = new byte[128];
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
-import com.yubico.base.CRC13239;
-
-public class CRC13239Test {
-
-	@Test
-	public void testCrc() {
-
-		byte[] data = { 0x0, 0x1, 0x2, 0x3, 0x4 };
-		short crc = CRC13239.getCRC(data, data.length);
-		assertEquals((short) 62919, crc);
+	static {
+		for (int i = 0; i < 10; i++) {
+			INV_HEX_CHARS['0' + i] = (byte) i;
+		}
+		for (int i = 0; i < 6; i++) {
+			INV_HEX_CHARS['A' + i] = (byte) (10 + i);
+			INV_HEX_CHARS['a' + i] = (byte) (10 + i);
+		}
 	}
 
-	@Test
-	public void testCrc2() {
-		byte[] data = { (byte) 0xfe };
-		/*
-		 * >>> test_common.crc16('fe'.decode('hex')) 4470 >>>
-		 */
-		short crc = CRC13239.getCRC(data, data.length);
-		assertEquals((short) 4470, crc);
+	public static String encode(byte[] src) {
+		char[] dest = new char[src.length * 2];
+
+		for (int si = 0, di = 0; si < src.length; si++) {
+			byte b = src[si];
+			dest[di++] = HEX_CHARS[(b & 0xf0) >>> 4];
+			dest[di++] = HEX_CHARS[(b & 0x0f)];
+		}
+
+		return new String(dest);
 	}
 
-	@Test
-	public void testCrc3() {
-		byte[] data = { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, /* uid */
-		0x30, 0x75, /* use_ctr */
-		0x00, 0x09, /* ts_low */
-		0x3d, /* ts_high */
-		(byte) 0xfa, /* session_ctr */
-		0x60, (byte) 0xea /* rnd */
-		};
-		short crc = CRC13239.getCRC(data, data.length);
+	public static byte[] decode(String string) {
+		byte[] dest = new byte[string.length() / 2];
 
-		assertEquals((short) 35339, crc);
-	}
+		for (int si = 0, di = 0; di < dest.length; di++) {
+			byte high = INV_HEX_CHARS[string.charAt(si++) & 0x7f];
+			byte low = INV_HEX_CHARS[string.charAt(si++) & 0x7f];
+			dest[di] = (byte) ((high << 4) + low);
+		}
 
-	@Test
-	public void testCrc4() {
-		byte[] data = { 0x55, (byte) 0xaa, 0x00, (byte) 0xff };
-		short crc = CRC13239.getCRC(data, data.length);
-		assertEquals((short) 52149, crc);
+		return dest;
 	}
 }
