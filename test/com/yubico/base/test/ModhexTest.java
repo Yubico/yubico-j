@@ -41,9 +41,9 @@ public class ModhexTest
 	public void testScenario1() throws Exception
 	{
 		String s = Modhex.encode("test".getBytes());
-		assertEquals(s, "ifhgieif");
+		assertEquals("ifhgieif", s);
 		byte[] b = Modhex.decode(s);
-		assertEquals(new String(b), "test");
+		assertEquals("test", new String(b));
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
