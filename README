@@ -8,11 +8,11 @@ the Yubico authentication device, the Yubikey.  In particular:
 
   * COPYING: software license
 
-  * pom.xml: build files for 'mvn'.
+  * `pom.xml`: build files for 'mvn'.
 
-  * src/: source code of Yubikey package.
+  * `src/`: source code of Yubikey package.
 
-  * test/: self-tests
+  * `test/`: self-tests
 
 Using
 -----
@@ -35,7 +35,7 @@ Build the package by invoking:
 
   $ mvn package
 
-The output Java library will be stored in target/yubico-j-$version.jar
+The output Java library will be stored in `target/yubico-j-$version.jar`.
 
 Self-tests
 ----------
