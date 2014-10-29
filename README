@@ -1,3 +1,5 @@
+== yubico-j ==
+
 Introduction
 ------------
 
@@ -18,11 +20,12 @@ Using
 The package is published in the maven central repos, so to include in your
 own maven project add this dependency:
 
-  <dependency>
-    <groupId>com.yubico</groupId>
-    <artifactId>yubico-j</artifactId>
-    <version>1.3</version>
-  </dependency>
+[source, xml]
+<dependency>
+  <groupId>com.yubico</groupId>
+  <artifactId>yubico-j</artifactId>
+  <version>1.3</version>
+</dependency>
 
 
 Building
@@ -41,8 +44,3 @@ Run the self-tests to make sure it is working properly:
 
   $ mvn test
 
-Questions?
-----------
-
-See the Google Group yubico-devel:
-http://groups.google.com/group/yubico-devel
