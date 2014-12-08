@@ -4,21 +4,20 @@ Introduction
 ------------
 
 This package make up the low-level Java software development kit for
-the Yubico authentication device, the Yubikey.  In particular:
+the Yubico authentication device, the YubiKey.  In particular:
 
-  * COPYING: software license
+  * `COPYING`: software license.
 
   * `pom.xml`: build files for 'mvn'.
 
-  * `src/`: source code of Yubikey package.
+  * `src/`: source code of YubiKey package.
 
-  * `test/`: self-tests
+  * `test/`: self-tests.
 
 Using
 -----
 
-The package is published in the maven central repos, so to include in your
-own maven project add this dependency:
+Add the following dependency to your POM file:
 
 [source, xml]
 <dependency>
