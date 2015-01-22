@@ -9,7 +9,7 @@
         <name>Yubico AB</name>
         <url>http://www.yubico.com/</url>
     </organization>
-    <url>http://yubico.github.com/yubico-j</url>
+    <url>https://developers.yubico.com/yubico-j</url>
     <packaging>jar</packaging>
 
     <developers>
