@@ -1,10 +1,10 @@
 language: java
 jdk:
-  - openjdk7
-  - oraclejdk8
+  - openjdk8
+  - oraclejdk11
 matrix:
   include:
-    - jdk: oraclejdk8
+    - jdk: oraclejdk11
       env: COVERALLS=true
 after_success:
   - test -z $COVERALLS || mvn clean test jacoco:report coveralls:report
